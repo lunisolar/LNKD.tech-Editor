@@ -1,0 +1,516 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xs:         <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix ml-xs:       <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> .
+
+<urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:>
+    dcterms:created   "2020-12-20"^^xs:date ;
+    dcterms:modified  "2020-12-20"^^xs:date ;
+    dcterms:publisher <https://lnkd.tech/> ;
+    dcterms:title     "Missing definitions of XML data types."@en ;
+    skos:definition   """Created with intention of use in authoring software (like LNKD.tech Editor) to \"see\" the missing links. Using in non-authoring cases
+                      should always follow a cautious decision. Data types are presented as is, without additional filtering - e.g. some are not recommended to
+                      be used in RDF for actual literals."""@en ;
+    skos:note         "This file is licensed with https://www.apache.org/licenses/LICENSE-2.0 llicense." ;
+    dcterms:license   <https://www.apache.org/licenses/LICENSE-2.0> ;
+    rdfs:seeAlso      "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# region Any roots
+
+xs:anyType
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  rdfs:Literal ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "anyType" ;
+    skos:definition  "Can be considered as the ·base type· of all datatypes." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:anySimpleType
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "anySimpleType" ;
+    skos:definition  "Can be considered as the ·base type· of all ·primitive· datatypes." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:anyAtomicType
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anySimpleType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "anySimpleType" ;
+    skos:definition  "A special ·restriction· of anySimpleType." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+xs:anyURI
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "anyURI" ;
+    skos:definition  "Any URI" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:boolean
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "boolean" ;
+    skos:definition  "boolean represents the values of two-valued logic." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# region Temporal
+
+xs:date
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "date" ;
+    skos:definition  "Defines a date value." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:dateTime
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "dateTime" ;
+    skos:definition  "Defines a date and time value." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:dateTimeStamp
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:dateTime ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "dateTimeStamp" ;
+    skos:definition  "The dateTimeStamp datatype is ·derived· from dateTime by giving the value required to its explicitTimezone facet." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:duration
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "duration" ;
+    skos:definition  "Defines a time interval." ;
+    skos:note        """Not recommended: xsd:duration does not have a well-defined value space (this may be corrected in later revisions of XML Schema datatypes,
+                     in which case the revised datatype would be suitable for use in RDF datatyping)""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:dayTimeDuration
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:duration ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "dayTimeDuration" ;
+    skos:definition  "Defines a time interval." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:yearMonthDuration
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:duration ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "yearMonthDuration" ;
+    skos:definition  "Defines a time interval." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+
+xs:gDay
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "gDay" ;
+    skos:definition  "Defines a part of a date - the day (DD)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:gMonth
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "gMonth" ;
+    skos:definition  "Defines a part of a date - the month (MM)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:gMonthDay
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "gMonthDay" ;
+    skos:definition  "Defines a part of a date - the month and day (MM-DD)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:gYear
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "gYear" ;
+    skos:definition  "Defines a part of a date - the year (YYYY)" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:gYearMonth
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "gYearMonth" ;
+    skos:definition  "Defines a part of a date - the year and month (YYYY-MM)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:time
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "time" ;
+    skos:definition  "Defines a time value." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+# region Decimal
+
+xs:decimal
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "decimal" ;
+    skos:definition  "A decimal value." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:integer
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:decimal ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "integer" ;
+    skos:definition  "An integer value." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:long
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:integer ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "long" ;
+    skos:definition  "A signed 64-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:int
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:long ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "int" ;
+    skos:definition  "A signed 32-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:short
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:int ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "short" ;
+    skos:definition  "A signed 16-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:byte
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:short ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "byte" ;
+    skos:definition  "A signed 8-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:nonNegativeInteger
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:integer ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "nonNegativeInteger" ;
+    skos:definition  "A signed 8-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:positiveInteger
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:integer ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "positiveInteger" ;
+    skos:definition  "An integer containing only positive values (1,2,..)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:unsignedLong
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:positiveInteger ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "unsignedLong" ;
+    skos:definition  "An unsigned 64-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:unsignedInt
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:unsignedLong ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "unsignedInt" ;
+    skos:definition  "An unsigned 32-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:unsignedShort
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:unsignedInt ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "unsignedShort" ;
+    skos:definition  "An unsigned 16-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:unsignedByte
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:unsignedShort ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "unsignedByte" ;
+    skos:definition  "An unsigned 8-bit integer." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:nonPositiveInteger
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:integer ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "nonPositiveInteger" ;
+    skos:definition  "An integer containing only non-positive values (..,-2,-1,0)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:negativeInteger
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:nonPositiveInteger ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "negativeInteger" ;
+    skos:definition  "An integer containing only negative values (..,-2,-1)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+# region Floating point
+
+xs:double
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "double" ;
+    skos:definition  "The double datatype is patterned after the IEEE double-precision 64-bit floating point datatype [IEEE 754-2008]." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:float
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "float" ;
+    skos:definition  "The float datatype is patterned after the IEEE single-precision 32-bit floating point datatype [IEEE 754-2008]." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+# region Binary
+
+xs:base64Binary
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "base64Binary" ;
+    skos:definition  "Base64 binary." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:hexBinary
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "hexBinary" ;
+    skos:definition  "Hex Binary." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+# region Strings
+
+xs:string
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "string" ;
+    skos:definition  "A string" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:normalizedString
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:string ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "normalizedString" ;
+    skos:definition  "A string that does not contain line feeds, carriage returns, or tabs." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:token
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:normalizedString ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "token" ;
+    skos:definition  "A string that does not contain line feeds, carriage returns, tabs, leading or trailing spaces, or multiple spaces." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:language
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:token ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "language" ;
+    skos:definition  "A string that contains a valid language id." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:Name
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:token ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "Name" ;
+    skos:definition  "A string that contains a valid XML name." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:NCName
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:Name ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "NCName" ;
+    skos:definition  "NCName represents XML \"non-colonized\" Names." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:ENTITY
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:NCName ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "ENTITY" ;
+    skos:definition  "ENTITY represents the ENTITY attribute type from [XML]." ;
+    skos:note        """Not recommended: xsd:QName and xsd:ENTITY require an enclosing XML document context.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:ID
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:NCName ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "ID" ;
+    skos:definition  "A string that represents the ID attribute in XML (only used with schema attributes)." ;
+    skos:note        """Not recommended: xsd:ID and xsd:IDREF are for cross references within an XML document.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:IDREF
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:NCName ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "IDREF" ;
+    skos:definition  "A string that represents the IDREF attribute in XML (only used with schema attributes)." ;
+    skos:note        """Not recommended: xsd:ID and xsd:IDREF are for cross references within an XML document.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:NMTOKEN
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:token ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "NMTOKEN" ;
+    skos:definition  "A string that represents the NMTOKEN attribute in XML (only used with schema attributes)." ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+# endregion
+
+xs:NOTATION
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "NOTATION" ;
+    skos:definition  "NOTATION represents the NOTATION attribute type from [XML]." ;
+    skos:note        """Not recommended: xsd:NOTATION is not intended for direct use.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:QName
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anyAtomicType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "QName" ;
+    skos:definition  "QName represents XML qualified names." ;
+    skos:note        """Not recommended: xsd:QName and xsd:ENTITY require an enclosing XML document context.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+.
+
+xs:ENTITIES
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anySimpleType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "ENTITIES" ;
+    skos:definition  "ENTITIES represents the ENTITIES attribute type from [XML]." ;
+    skos:note        """Not recommended: xsd:IDREFS, xsd:ENTITIES and xsd:NMTOKENS are sequence-valued datatypes which do not fit the RDF datatype model.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+    rdfs:seeAlso     xs:ENTITY ;
+.
+
+xs:IDREFS
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anySimpleType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "IDREFS" ;
+    skos:definition  "IDREFS represents the IDREFS attribute type from [XML]." ;
+    skos:note        """Not recommended: xsd:IDREFS, xsd:ENTITIES and xsd:NMTOKENS are sequence-valued datatypes which do not fit the RDF datatype model.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+    rdfs:seeAlso     xs:IDREF ;
+.
+
+xs:NMTOKENS
+    a                rdfs:Datatype ;
+    rdfs:subClassOf  xs:anySimpleType ;
+    rdfs:isDefinedBy <urn:tag:lnkd.tech,2020:MissingLink:XMLDataTypes:> ;
+    skos:prefLabel   "NMTOKENS" ;
+    skos:definition  "NMTOKENS represents the NMTOKENS attribute type from [XML]." ;
+    skos:note        """Not recommended: xsd:IDREFS, xsd:ENTITIES and xsd:NMTOKENS are sequence-valued datatypes which do not fit the RDF datatype model.""" ;
+    rdfs:seeAlso     "https://www.w3.org/TR/2004/REC-rdf-mt-20040210/#dtype_interp"^^xs:anyURI ;
+    rdfs:seeAlso     "https://www.w3.org/TR/xmlschema11-2/"^^xs:anyURI ;
+    rdfs:seeAlso     xs:NMTOKEN ;
+.
